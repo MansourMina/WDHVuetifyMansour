@@ -29,7 +29,7 @@
       </v-card-text>
 
       <v-card-actions>
-        <v-btn color="white" class="red darken-2" text>
+        <v-btn color="white" class="red darken-2" :disabled="c.title.includes('RESERVED')" text @click="buyCar()">
           Buy Car
         </v-btn>
       </v-card-actions>
@@ -45,6 +45,11 @@ export default {
     },
   },
   name: 'CarCard',
+  methods: {
+    buyCar() {
+      this.$emit('buyCar', this.c);
+    },
+  },
 };
 </script>
 <style></style>

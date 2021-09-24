@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <LogoBar />
-    <CarCards :cars="cars" />
+    <CarCards :cars="cars" :refresh="getCars" />
   </v-container>
 </template>
 

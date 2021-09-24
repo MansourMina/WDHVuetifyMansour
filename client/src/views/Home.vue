@@ -1,20 +1,38 @@
 <template>
-<v-container>
-  <LogoBar />
-  <CarCards/>
+  <v-container>
+    <LogoBar />
+    <CarCards :cars="cars" />
   </v-container>
 </template>
 
 <script>
-  import LogoBar from '../components/LogoBar.vue'
-  import CarCards from '../components/CarCards.vue'
+import LogoBar from '../components/LogoBar.vue';
+import CarCards from '../components/CarCards.vue';
+import axios from 'axios';
 
-  export default {
-    name: 'Home',
+export default {
+  name: 'Home',
 
-    components: {
-      LogoBar,
-      CarCards
+  components: {
+    LogoBar,
+    CarCards,
+  },
+
+  data: () => ({
+    cars: [],
+  }),
+
+  created() {
+    this.getCars();
+  },
+  methods: {
+    async getCars() {
+      const { data } = await axios({
+        url: 'http://localhost:3000/cars',
+        method: 'GET',
+      });
+      this.cars = data;
     },
-  }
+  },
+};
 </script>
